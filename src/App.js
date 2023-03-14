@@ -1,0 +1,12 @@
+import './sass/main.scss';
+import Dashboard from './pages/dashboard';
+
+function App() {
+  return (
+    <>
+      <Dashboard />
+    </>
+  );
+}
+
+export default App;

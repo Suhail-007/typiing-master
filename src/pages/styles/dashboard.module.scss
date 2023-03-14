@@ -1,0 +1,6 @@
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  min-height: calc(100vh - 10rem);
+}
