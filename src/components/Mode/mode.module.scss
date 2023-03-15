@@ -6,23 +6,30 @@
   row-gap: 1.5rem;
   align-items: center;
 
-  &__icon-cont {
+  &__link {
     background: #fff;
+    color: #000;
     padding: 2rem;
     width: 10rem;
     height: 10rem;
-    box-shadow: $mode-shadow,
-      $mode-shadow-fff;
     border-radius: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
+    
+    box-shadow: $mode-shadow,
+      $mode-shadow-fff;
+
+    &:is(:hover, :focus) {
+      box-shadow: inset $mode-shadow-fff,
+        inset $mode-shadow;
+    }
 
     &>svg {
       width: 5rem;
       height: 5rem;
     }
-
   }
 
   &__heading {

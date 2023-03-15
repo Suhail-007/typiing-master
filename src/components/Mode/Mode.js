@@ -1,11 +1,13 @@
+import { Link } from 'react-router-dom';
 import styles from './mode.module.scss';
 
 export default function(props) {
+
   return (
     <section className={styles.mode}>
-      <div className={styles['mode__icon-cont']}>
+      <Link className={styles['mode__link']} to={`${props.name.toLowerCase()}`}>
         {props.icon}
-      </div>
+      </Link>
       <p className={styles['mode__heading']}>{props.name}</p>
     </section>
   )

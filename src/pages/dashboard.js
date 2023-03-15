@@ -6,6 +6,9 @@ export default function() {
     <article className='dashboard'>
       <Mode name="Word" icon={<TbCircleLetterW />}/>
       <Mode name="Sentence" icon={<TbCircleLetterS />}/>
+      
+      
+      <p>Click on icons to get start.</p>
     </article>
   )
 }
