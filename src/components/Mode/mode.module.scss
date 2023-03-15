@@ -1,18 +1,37 @@
 .mode {
   $mode-shadow: .5rem .5rem 1rem #dedede;
-  $mode-shadow-fff: -.5rem -.5rem 1rem #ffffff;
-  background: #fff;
-  padding: 2rem;
-  width: 10rem;
-  height: 10rem;
-  box-shadow: $mode-shadow,
-  $mode-shadow-fff;
-  border-radius: 1rem;
+  $mode-shadow-fff: -.5rem -.5rem 1rem rgba(240, 240, 240, .4);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  row-gap: 1.5rem;
   align-items: center;
 
-  &__name {
+  &__icon-cont {
+    background: #fff;
+    padding: 2rem;
+    width: 10rem;
+    height: 10rem;
+    box-shadow: $mode-shadow,
+      $mode-shadow-fff;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &>svg {
+      width: 5rem;
+      height: 5rem;
+    }
+
+  }
+
+  &__heading {
     font-size: 1.5rem;
+    box-shadow: $mode-shadow,
+      $mode-shadow-fff;
+    padding: 1rem 2rem;
+    border-radius: .5rem;
+    width: 10rem;
+    text-align: center;
   }
 }
