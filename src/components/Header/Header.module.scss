@@ -1,0 +1,32 @@
+.header {
+  background: hsla(36, 0%, 90%, .5);
+  color: #4B4A4A;
+  border-radius: 0 0 1rem 1rem;
+
+  &__nav-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-block: 2rem;
+    margin: 0;
+    list-style: none;
+    width: 100%;
+
+    &>li {
+      text-transform: capitalize;
+      font-size: 1.4rem;
+      letter-spacing: .1rem;
+
+      display: flex;
+      flex-direction: column;
+      row-gap: 1rem;
+      align-items: center;
+
+      &>span {
+        font-size: 1.5rem;
+        letter-spacing: .1rem;
+        font-weight: 600;
+      }
+    }
+  }
+}

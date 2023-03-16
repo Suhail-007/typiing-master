@@ -1,5 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Dashboard from './pages/dashboard';
+import Sentence from './pages/sentence';
+import Word from './pages/word';
+
 import './sass/main.scss';
 
 const router = createBrowserRouter(
@@ -7,32 +10,17 @@ const router = createBrowserRouter(
     {
       path: '/',
       element: <Dashboard />
+    },
+    {
+      path: '/sentence',
+      element: <Sentence />
+    },
+    {
+      path: '/word',
+      element: <Word />
     }
   ]
 );
-
-// <header>
-//         <nav>
-//           <ul>
-//             <li>
-//               Correct words
-//               50
-//             </li>
-//             <li>
-//               wrong words
-//               10
-//             </li>
-//             <li>
-//               accuracy
-//               90%
-//             </li>
-//             <li>
-//               WPM
-//               26
-//             </li>
-//           </ul>
-//         </nav>
-//       </header>
 
 function App() {
 
