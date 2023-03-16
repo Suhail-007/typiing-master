@@ -5,8 +5,10 @@ export default function(props) {
 
   return (
     <section className={styles.mode}>
-      <Link className={styles['mode__link']} to={`${props.name.toLowerCase()}`}>
-        {props.icon}
+      <Link to={`/${props.name.toLowerCase()}`} className={styles['mode__link']}>
+        <svg>
+          <use href={props.icon} ></use>
+        </svg>
       </Link>
       <p className={styles['mode__heading']}>{props.name}</p>
     </section>

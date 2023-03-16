@@ -1,12 +1,11 @@
 import Mode from '../components/Mode/Mode';
-import { TbCircleLetterS, TbCircleLetterW } from 'react-icons/tb';
+import icons from '../assets/icons.svg'
 
 export default function() {
   return (
     <article className='dashboard'>
-      <Mode name="Word" icon={<TbCircleLetterW />}/>
-      <Mode name="Sentence" icon={<TbCircleLetterS />}/>
-      
+        <Mode name="Word" icon={`${icons}#icon-word`} />
+        <Mode name="Sentence" icon={`${icons}#icon-sentence`} />
       
       <p>Click on icons to get start.</p>
     </article>

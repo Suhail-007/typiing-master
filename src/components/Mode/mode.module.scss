@@ -9,13 +9,14 @@
   &__link {
     background: #fff;
     color: #000;
-    padding: 2rem;
+    padding:1rem;
     width: 10rem;
     height: 10rem;
     border-radius: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
     text-decoration: none;
     
     box-shadow: $mode-shadow,
@@ -24,11 +25,27 @@
     &:is(:hover, :focus) {
       box-shadow: inset $mode-shadow-fff,
         inset $mode-shadow;
+        
+        & svg {
+          animation: backForth 1000ms ease-in-out forwards;
+        }
+    }
+    
+    @keyframes backForth {
+      0% {
+        transform: rotate(45deg);
+      }
+      50% {
+        transform: rotate(-45deg);
+      }
+      100% {
+        tranform: rotate(0deg)
+      }
     }
 
     &>svg {
-      width: 5rem;
-      height: 5rem;
+      width: 100%;
+      fill: rgba(0, 190, 235, 1);
     }
   }
 
