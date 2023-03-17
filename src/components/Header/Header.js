@@ -1,14 +1,16 @@
 import { useLocation } from 'react-router-dom';
 
 import styles from './Header.module.scss'
-import logo from '../../assets/logo.svg';
+import icons from '../../assets/icons.svg';
 
 export default function() {
   const { pathname } = useLocation();
 
   const title = (
-    <header className={styles['header']}>
-      <img src={logo} alt='typing master' />
+    <header className={styles['header--home']}>
+      <svg>
+        <use href={`${icons}#icon-logo`}></use>
+      </svg>
     </header>
   );
 
