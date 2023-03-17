@@ -1,0 +1,73 @@
+.main {
+  $background-color: hsla(0, 0%, 97%, 1);
+  $primary-color: hsla(0, 0%, 20%, 1);
+  $border-color: hsla(0, 0%, 90%, 1);
+  $border-color-active: #777;
+  $max-height: 15rem;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  row-gap: 2rem;
+
+  margin-top: 2rem;
+
+  .generated-text {
+    background: $background-color;
+    padding: 1rem;
+    border-radius: .3rem;
+    width: 100%;
+    max-height: $max-height;
+    overflow: hidden scroll;
+    color: $primary-color;
+
+    & p {
+      font-size: 1.7rem;
+      line-height: 140%;
+    }
+  }
+
+  .textarea-cont {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    color: $primary-color;
+
+    & textarea {
+      width: 70%;
+      resize: none;
+      border: none;
+      padding: 0 .4rem;
+      font-size: 1.5rem;
+      border: none;
+      border-bottom: .1rem solid $border-color;
+      text-align: center;
+      transition: 500ms ease-in-out;
+
+      &:is(:hover, :focus) {
+        outline: none;
+        border-bottom: .1rem solid $border-color-active;
+      }
+    }
+  }
+
+  .correct-para,
+  .typed-para {
+    max-height: $max-height;
+    width: 90%;
+    padding: 1rem;
+    border-radius: .5rem;
+    overflow: hidden scroll;
+    text-align: center;
+    font-size: 1.4rem;
+    color: $primary-color;
+  }
+
+  .correct-para {
+    background: hsla(123, 100%, 95%, 1);
+  }
+
+  .typed-para {
+    background: hsla(201, 100%, 95%, 1);
+  }
+}

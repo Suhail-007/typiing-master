@@ -1,12 +1,11 @@
 import Header from '../components/Header/Header';
+import PageContent from '../components/Layout/Page'
 
-export default function () {
+export default function() {
   return (
     <>
       <Header />
-      <main>
-        <h1>Hello sentence pages.!</h1>
-      </main>
+      <PageContent />
     </>
-    )
+  )
 }

@@ -15,7 +15,7 @@
     &>li {
       text-transform: capitalize;
       font-size: 1.4rem;
-      letter-spacing: .1rem;
+      font-weight: 600;
 
       display: flex;
       flex-direction: column;
@@ -25,7 +25,6 @@
       &>span {
         font-size: 1.5rem;
         letter-spacing: .1rem;
-        font-weight: 600;
       }
     }
   }

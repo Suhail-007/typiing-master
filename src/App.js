@@ -12,11 +12,11 @@ const router = createBrowserRouter(
       element: <Dashboard />
     },
     {
-      path: '/sentence',
+      path: 'sentence',
       element: <Sentence />
     },
     {
-      path: '/word',
+      path: 'word',
       element: <Word />
     }
   ]
