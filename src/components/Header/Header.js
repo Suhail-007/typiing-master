@@ -1,6 +1,19 @@
+import { useLocation } from 'react-router-dom';
+
 import styles from './Header.module.scss'
+import logo from '../../assets/logo.svg';
 
 export default function() {
+  const { pathname } = useLocation();
+
+  const title = (
+    <header className={styles['header']}>
+      <img src={logo} alt='typing master' />
+    </header>
+  );
+
+  if (pathname === '/') return title
+
   return (
     <header className={styles['header']}>
         <nav>

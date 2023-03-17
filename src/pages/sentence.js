@@ -4,7 +4,6 @@ import PageContent from '../components/Layout/Page'
 export default function() {
   return (
     <>
-      <Header />
       <PageContent />
     </>
   )
