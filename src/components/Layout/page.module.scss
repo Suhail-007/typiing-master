@@ -22,7 +22,9 @@
     color: $primary-color;
 
     & p {
-      font-size: 1.7rem;
+      font-size: 1.8rem;
+      font-family: 'Assistant', sans-serif;
+      letter-spacing: 1px;
       line-height: 140%;
     }
   }
@@ -59,8 +61,8 @@
     border-radius: .5rem;
     overflow: hidden scroll;
     text-align: center;
-    font-size: 1.4rem;
     color: $primary-color;
+    font-size: 1.4rem;
   }
 
   .correct-para {

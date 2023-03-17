@@ -6,10 +6,34 @@
   margin: 0;
 }
 
+/* 
+font-family: 'Assistant', sans-serif;
+font-family: 'Sen', sans-serif;
+font-family: 'Tenor Sans', sans-serif;*/
+
 html {
   //1REM === 10PX
   font-size: 62.5%;
 }
 
 body {
+  font-family: 'Tenor Sans', sans-serif;
+}
+
+.current-word {
+  display: inline;
+  background: hsla(207, 100%, 87%, .5);
+
+  & p {
+    display: inline;
+    color: #008AFF;
+  }
+}
+
+.correct-word {
+  color: hsla(139, 44%, 64%, 1);
+}
+
+.wrong-word {
+  color: hsla(0, 100%, 49%, 1);
 }

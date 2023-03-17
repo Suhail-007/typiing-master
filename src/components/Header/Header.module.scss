@@ -10,9 +10,9 @@
     & svg {
       display: flex;
       width: 50%;
-      fill: rgba(0, 190, 235, 1);
       height: 7rem;
       margin-left: 2rem;
+      fill: rgba(0, 190, 235, 1);
     }
 
   }
@@ -28,8 +28,9 @@
 
     &>li {
       text-transform: capitalize;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 600;
+      font-family: 'Assistant', sans-serif;
 
       display: flex;
       flex-direction: column;

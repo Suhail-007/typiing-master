@@ -4,7 +4,7 @@ export default function Page(props) {
   return (
     <main className={styles.main}>
       <section className={styles['generated-text']} data-generated-para>
-        <p>fflkjrf lfjlk fjeoijf  jfejl fje l;jf ejf oiejf lfjeoij lkjoi jflkjfoi lkdjd fjlke lkfjl;fdlkfjewp fd= fd jf p </p>
+        <p><div className={styles['current-word']}><p><span className={styles['correct-word']}>f</span>flkjrf</p></div> lfjlk fjeoijf  jfejl fje l;jf ejf oiejf lfjeoij lkjoi jflkjfoi lkdjd fjlke lkfjl;fdlkfjewp fd= fd jf p </p>
       </section>
       <section className={styles['textarea-cont']} data-textarea-cont>
         <textarea type='text' placeholder='Press space to get new word'></textarea>  

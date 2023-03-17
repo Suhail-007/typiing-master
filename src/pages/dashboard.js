@@ -7,7 +7,7 @@ export default function() {
         <Mode name="Word" icon={`${icons}#icon-word`} />
         <Mode name="Sentence" icon={`${icons}#icon-sentence`} />
       
-      <p>Click on icons to get start.</p>
+      <p className='start'>Click on icons to get start.</p>
     </article>
   )
 }
