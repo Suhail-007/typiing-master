@@ -1,4 +1,6 @@
 .header {
+  $svg-height: 7rem;
+
   background: hsla(36, 0%, 90%, .5);
   color: #4B4A4A;
   border-radius: 0 0 1rem 1rem;
@@ -6,12 +8,24 @@
   &--home {
     background: #fff;
     box-shadow: 0 .5rem 1rem 0 rgba(0, 0, 0, .1);
+    padding-inline: 1rem;
 
-    & svg {
+    &,
+    &>.author-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &>.author-link svg {
+      width: 3rem;
+      height: $svg-height;
+    }
+
+    & .logo {
       display: flex;
       width: 50%;
-      height: 7rem;
-      margin-left: 2rem;
+      height: $svg-height;
       fill: rgba(0, 190, 235, 1);
     }
 

@@ -3,14 +3,20 @@ import { useLocation } from 'react-router-dom';
 import styles from './Header.module.scss'
 import icons from '../../assets/icons.svg';
 
-export default function() {
+export default function Header() {
   const { pathname } = useLocation();
-
+  
   const title = (
     <header className={styles['header--home']}>
-      <svg>
+      <svg className={styles.logo}>
         <use href={`${icons}#icon-logo`}></use>
       </svg>
+      
+      <a className={styles['author-link']} target='_blank' rel="noreferrer" href='https://github.com/Suhail-007'>
+        <svg>
+          <use href={`${icons}#icon-github`}></use>
+        </svg>
+      </a>
     </header>
   );
 

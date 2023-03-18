@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './mode.module.scss';
 
-export default function(props) {
+export default function Mode(props) {
 
   return (
     <section className={styles.mode}>

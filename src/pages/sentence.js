@@ -1,10 +1,21 @@
-import Header from '../components/Header/Header';
-import PageContent from '../components/Layout/Page'
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { sentenceActions, getText } from '../store/store';
 
-export default function() {
+import PageContent from '../components/Layout/Page';
+
+export default function Sentence() {
+  const dispatch = useDispatch();
+  const sentence = useSelector(state => state.sentence);
+
+  useEffect(() => {
+    dispatch(getText());
+  }, [dispatch]);
+  
+
   return (
     <>
-      <PageContent />
+      <PageContent text={sentence.generatedText} />
     </>
   )
 }
