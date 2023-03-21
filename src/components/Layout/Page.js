@@ -49,7 +49,7 @@ export default function Page({ changeWord, inputHandler }) {
             wordsArr.map((word, index) => {
               if(index === wordIndex) {
                 return (
-                  <span ref={scrollViewCurrWord} key={'parent'} className='current-word'>{spanElemsARR}</span>
+                  <span ref={scrollViewCurrWord} key={'parent'} className='current-word'>{spanElemsArr}</span>
                 )
               }
               return ` ${word} `
