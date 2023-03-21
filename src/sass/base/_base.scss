@@ -22,7 +22,7 @@ body {
 
 .current-word {
   display: inline;
-  background: hsla(207, 100%, 87%, .5);
+  background: hsla(207, 100%, 90%, .5);
 
   & p {
     display: inline;
@@ -31,9 +31,10 @@ body {
 }
 
 .correct-word {
-  color: hsla(139, 44%, 64%, 1);
+  color: hsla(139, 46%, 54%, 1);
 }
 
 .wrong-word {
   color: hsla(0, 100%, 49%, 1);
+  text-decoration: underline;
 }

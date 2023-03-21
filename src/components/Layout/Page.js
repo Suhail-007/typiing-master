@@ -1,39 +1,77 @@
-import { sentenceActions } from '../../store/store';
+import { useRef } from 'react';
+
+import { sentenceActions } from '../../store/sentenceSlice';
 import { useSelector, useDispatch } from 'react-redux'
 
 import styles from './page.module.scss';
 
-export default function Page(props) {
-  const { sentence } = useSelector(state => state);
+export default function Page({ changeWord, inputHandler }) {
+  const scrollViewCurrWord = useRef();
+  
+  const dispatch = useDispatch();
+  const { totalWords, wordsArr, wordIndex, inputValue, wordsArrUnsliced } = useSelector(state => state.sentence);
 
-  const { text } = props;
+  const currentWord = wordsArr[wordIndex];
+ 
+ //we are looping over the current word in the word array and checking if typed letter is same as current word letter and adding class respectively.
+  const spanElemsArr = currentWord.split('').map((l, i) => {
+    let className;
+    
+    if (inputValue.length === 0) className = ''
+    else className = `${inputValue[i] === l ? 'correct-word' : 'wrong-word'}`
 
-  const textArr = text.length !== 0 ? text.split(' ') : text;
-  console.log(textArr);
+    return (
+      <span key={i} className={className}>{l}</span>
+    )
+  })
 
+  const TypedPara = function() {
+    return totalWords.map((word, i) => {
+      if (word !== wordsArr[i]) return <span key={i} className='wrong-word'> {word}</span>
+      return <span key={i}> {word} </span>
+    });
+  }
 
-  const currWord = (
-    <span className='current-word'>
-      {}
-      <span className='wrong-word'>{textArr[sentence.wordIndex]}</span>
-    </span>
-  );
+  function onInputHandler(e) {
+    inputHandler(e)
+  }
+
+  function onKeyDownHandler(e) {
+    changeWord(e);
+    scrollViewCurrWord.current.scrollIntoView({ behavior: "smooth", inline: "nearest", block: "start"});
+  }
 
   return (
     <main className={styles.main}>
       <section className={styles['generated-text']} data-generated-para>
         <p>
-        {currWord} {textArr.slice(sentence.wordIndex+1).join(' ')} 
+          {
+            wordsArr.map((word, index) => {
+              if(index === wordIndex) {
+                return (
+                  <span ref={scrollViewCurrWord} key={'parent'} className='current-word'>{spanElemsARR}</span>
+                )
+              }
+              return ` ${word} `
+            })
+            
+            
+          } 
         </p>
       </section>
       <section className={styles['textarea-cont']} data-textarea-cont>
-        <textarea type='text' placeholder='Press space to get new word'></textarea>  
+        <textarea onKeyDown={onKeyDownHandler} onInput={onInputHandler} type='text' placeholder='Press space to get new word'></textarea>  
       </section>
       <section data-correct-para className={styles['correct-para']}>
-        <p>this is correct para from the server.</p>
+        <p>
+        {totalWords.length === 0 && <span>Server generated paragraph</span>}
+        {totalWords.length !==0 && wordsArr.slice(0, totalWords.length).join(' ')}
+        </p>
       </section>
       <section data-typed-para className={styles['typed-para']}>
-        This is the typed para typed by the user 
+        {totalWords.length === 0 && <span>User typed paragraph</span>}
+      
+        {totalWords.length !==0 && TypedPara()}
       </section>
     </main>
   )

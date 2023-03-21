@@ -1,11 +1,14 @@
 import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { sentenceActions } from '../../store/sentenceSlice';
 
 import styles from './Header.module.scss'
 import icons from '../../assets/icons.svg';
 
 export default function Header() {
+  const { sentence } = useSelector(state => state);
   const { pathname } = useLocation();
-  
+
   const title = (
     <header className={styles['header--home']}>
       <svg className={styles.logo}>
@@ -28,11 +31,11 @@ export default function Header() {
           <ul className={styles['header__nav-list']}>
             <li>
               Correct words
-              <span>50</span>
+              <span>{sentence.correctWords.length}</span>
             </li>
             <li>
               wrong words
-              <span>10</span>
+              <span>{sentence.incorrectWords.length}</span>
             </li>
             <li>
               accuracy

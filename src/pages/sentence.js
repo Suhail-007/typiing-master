@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { sentenceActions, getText } from '../store/store';
+import { sentenceActions, getText } from '../store/sentenceSlice';
 
 import PageContent from '../components/Layout/Page';
 
@@ -11,11 +11,25 @@ export default function Sentence() {
   useEffect(() => {
     dispatch(getText());
   }, [dispatch]);
-  
+
+  const onKeyPressHandler = function(e) {
+    if (e.code !== 'Space') return
+    if (!e.target.value.trim().length) return
+
+    e.preventDefault();
+    dispatch(sentenceActions.increaseWordIndex(e.target.value));
+    e.target.value = ''
+  }
+
+  const inputHandler = function(e) {
+    if ((sentence.wordsArr.length - sentence.wordIndex) === 10) dispatch(getText());
+    dispatch(sentenceActions.checkWord(e.target.value));
+  }
 
   return (
     <>
-      <PageContent text={sentence.generatedText} />
+    {sentence.generatedText.length === 0 && <p>Loading... </p>}
+    {sentence.generatedText.length !== 0 && <PageContent inputHandler={inputHandler} changeWord={onKeyPressHandler} />}
     </>
   )
 }
