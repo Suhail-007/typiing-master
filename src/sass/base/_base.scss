@@ -20,6 +20,14 @@ body {
   font-family: 'Tenor Sans', sans-serif;
 }
 
+.word {
+  text-align: center;
+}
+
+.sentence {
+  text-align: initial;
+}
+
 .current-word {
   display: inline;
   background: hsla(207, 100%, 90%, .5);

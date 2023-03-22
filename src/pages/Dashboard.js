@@ -1,7 +1,10 @@
 import Mode from '../components/Mode/Mode';
+import { wordsSentenceActions } from '../store/wordsSentenceSlice';
+
 import icons from '../assets/icons.svg'
 
-export default function dashboard() {
+export default function Dashboard() {
+  
   return (
     <article className='dashboard'>
       <div className='intro'>

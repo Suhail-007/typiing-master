@@ -1,22 +1,27 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { sentenceActions } from '../../store/sentenceSlice';
+import { useLocation } from 'react-router-dom';
+import { wordsSentenceActions } from '../../store/wordsSentenceSlice';
+import RootHeader from './RootHeader';
 
 import styles from './Header.module.scss'
 
 export default function Header() {
-  const { sentence } = useSelector(state => state);
-  
+  const { wordsSentence } = useSelector(state => state);
+  const { pathname } = useLocation()
+
+  if (pathname === '/') return <RootHeader />
+
   return (
     <header className={styles['header']}>
         <nav>
           <ul className={styles['header__nav-list']}>
             <li>
               Correct words
-              <span>{sentence.correctWords.length}</span>
+              <span>{wordsSentence.correctWords.length}</span>
             </li>
             <li>
               wrong words
-              <span>{sentence.incorrectWords.length}</span>
+              <span>{wordsSentence.incorrectWords.length}</span>
             </li>
             <li>
               accuracy

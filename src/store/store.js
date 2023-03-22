@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import sentenceReducer from './sentenceSlice';
+import wordsSentenceReducer from './wordsSentenceSlice';
 
 const store = configureStore({
   reducer: {
-    sentence: sentenceReducer,
+    wordsSentence: wordsSentenceReducer,
   }
 });
 

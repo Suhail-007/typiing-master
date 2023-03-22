@@ -1,9 +1,10 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import RootElement from './pages/RootElement';
-import Dashboard from './pages/dashboard';
-import Sentence from './pages/sentence';
-import Word from './pages/word';
+import Dashboard from './pages/Dashboard';
+import Sentence from './pages/Sentence';
+import Word from './pages/Word';
+import Error from './pages/Error';
 
 import './sass/main.scss';
 
@@ -12,6 +13,7 @@ const router = createBrowserRouter(
     {
       path: '/',
       element: <RootElement />,
+      errorElement: <Error />,
       children: [
         {
           path: '/',
@@ -24,11 +26,12 @@ const router = createBrowserRouter(
         },
         {
           path: 'word',
-          element: <Word />
+          element: <Word />,
         }
         ]
     }]
 );
+
 
 function App() {
   return (
