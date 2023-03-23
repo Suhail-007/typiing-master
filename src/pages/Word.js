@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { wordsSentenceActions,getText} from '../store/wordsSentenceSlice';
-
-import PageContent from '../components/Layout/Page';
+import SkeletonPage from '../components/Layout/pages/SkeletonPage'
+import { wordsSentenceActions, getText } from '../store/wordsSentenceSlice';
+import PageContent from '../components/Layout/pages/Page';
 
 export default function Sentence() {
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ export default function Sentence() {
 
   return (
     <>
-    {sentenceArr.length === 0 && <p>Loading... </p>}
+    {sentenceArr.length === 0 && <SkeletonPage />}
     {sentenceArr.length !== 0 && <PageContent className={'word'} sentence={sentence} checkWord={checkTypedWord} inputHandler={inputHandler} changeWord={onKeyPressHandler} />}
     </>
   )
