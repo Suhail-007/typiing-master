@@ -7,11 +7,19 @@ import PageContent from '../components/Layout/pages/Page';
 
 export default function Sentence() {
   const dispatch = useDispatch();
-  const { sentenceArr, wordIndex, inputValue } = useSelector(state => state.wordsSentence);
+  const { sentenceArr, wordIndex, inputValue, correctWords, totalWords } = useSelector(state => state.wordsSentence);
   const scrollCurrWordIntoView = useRef();
 
   useEffect(() => {
+    let interval;
     dispatch(getText('words'));
+
+    interval = setInterval(() => {
+      dispatch(wordsSentenceActions.calculateWPM());
+    }, 6000 * 10);
+
+    //clear function
+    return () => clearInterval(interval);
   }, [dispatch]);
 
   const onKeyPressHandler = function(e) {
@@ -20,6 +28,7 @@ export default function Sentence() {
 
     e.preventDefault();
     dispatch(wordsSentenceActions.increaseWordIndex(e.target.value));
+    dispatch(wordsSentenceActions.calculateAccuracy())
     e.target.value = ''
   }
 

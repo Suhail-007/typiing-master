@@ -8,6 +8,9 @@ const initialScoreState = {
   sentenceArr: [],
   inputValue: [],
   wordIndex: 0,
+  wpmArr: [],
+  wpm: 0,
+  accuracy: 0,
 }
 
 const wordsSentence = createSlice({
@@ -22,7 +25,10 @@ const wordsSentence = createSlice({
       state.incorrectWords = [];
       state.totalWords = [];
       state.inputValue = [];
-      state.wordIndex = 0;
+      state.wpmArr = [];
+      state.wpm = 0;
+      state.accuracy = 0;
+      state.state.wordIndex = 0;
     },
 
     clearSpanArr(state) {
@@ -59,17 +65,29 @@ const wordsSentence = createSlice({
       const currWord = action.payload;
 
       if (state.sentenceArr[state.wordIndex] === currWord) {
-        state.totalWords.push(currWord);
         state.correctWords.push(currWord);
       }
       else {
-        state.totalWords.push(currWord);
         state.incorrectWords.push(currWord);
       }
 
       //increase the wordIndex whether typed word is correct or wrong and clear the input letters
+      state.totalWords.push(currWord);
+      state.wpmArr.push(currWord)
       state.wordIndex++;
       state.inputValue = []
+    },
+
+    calculateWPM(state) {
+      const totalWordsFilter = state.wp.length / 5;
+      state.wpm = totalWordsFilter / 1;
+
+      //empty the arr 
+      state.wpmArr = [];
+    },
+
+    calculateAccuracy(state) {
+      state.accuracy = ((state.correctWords.length / state.totalWords.length) * 100).toFixed(0);
     },
   }
 });

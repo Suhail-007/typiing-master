@@ -10,7 +10,16 @@ export default function Sentence() {
   const { sentenceArr, wordIndex, inputValue } = useSelector(state => state.wordsSentence);
 
   useEffect(() => {
+    let interval;
+
     dispatch(getText());
+
+    interval = setInterval(() => {
+      dispatch(wordsSentenceActions.calculateWPM());
+    }, 6000 * 10);
+
+    //clear function
+    return () => clearInterval(interval);
   }, [dispatch]);
 
   const onKeyPressHandler = function(e) {
@@ -19,6 +28,7 @@ export default function Sentence() {
 
     e.preventDefault();
     dispatch(wordsSentenceActions.increaseWordIndex(e.target.value));
+    dispatch(wordsSentenceActions.calculateAccuracy())
     e.target.value = ''
   }
 
