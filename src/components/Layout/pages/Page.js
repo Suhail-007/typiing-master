@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import { useSelector } from 'react-redux'
 import CorrectPara from './CorrectPara';
 import TypedPara from './TypedPara';
 
