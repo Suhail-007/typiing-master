@@ -1,4 +1,7 @@
 self.addEventListener('install', e => {
-  
-  console.log('install');
+  // e.waitUntil(
+  //   cache.open('static')
+  //   .then(cache => {
+  //   })
+  // )
 })
