@@ -1,5 +1,4 @@
 import Mode from '../components/Mode/Mode';
-import { wordsSentenceActions } from '../store/wordsSentenceSlice';
 
 import icons from '../assets/icons.svg'
 

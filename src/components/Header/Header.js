@@ -1,12 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { wordsSentenceActions } from '../../store/wordsSentenceSlice';
 
 import RootHeader from './RootHeader';
 import styles from './Header.module.scss'
 
 export default function Header() {
-  const { correctWords, incorrectWords, totalWords, wpm , accuracy, charArr} = useSelector(state => state.wordsSentence);
+  const { correctWords, incorrectWords, totalWords, wpm, accuracy } = useSelector(state => state.wordsSentence);
 
   const { pathname } = useLocation();
 

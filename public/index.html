@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
+  <meta name="theme-color" content="#fff" />
   <meta name="description" content="Typing master, test your typing speed. Type as many words as you can in a minute to measure your speed. Speed is measured in WORD PER MINUTE(WPM)" />
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
   <!--
@@ -22,7 +22,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  <title>React App</title>
+  <title>Typing Master</title>
 </head>
 
 <body>
@@ -38,6 +38,18 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+
+  <<script>
+    if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('../sw.js')
+    .then(registration => {
+    console.log('Sw registered');
+    console.log(registration);
+    })
+    .catch(err => alert('Service worker registration failed, try again or contact developer'));
+    } else alert('Your system cannot install this website as PWA');
+    </script>
 </body>
 
 </html>

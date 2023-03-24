@@ -9,9 +9,6 @@ import styles from './page.module.scss';
 export default function Page({ changeWord, inputHandler, checkWord, sentence, className }) {
   const scrollCurrWordIntoView = useRef();
 
-  const { totalWords, sentenceArr } = useSelector(state => state.wordsSentence);
-
-
   function onInputHandler(e) {
     inputHandler(e);
     checkWord();

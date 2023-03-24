@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import SkeletonPage from '../components/Layout/pages/SkeletonPage'
@@ -7,8 +7,7 @@ import PageContent from '../components/Layout/pages/Page';
 
 export default function Sentence() {
   const dispatch = useDispatch();
-  const { sentenceArr, wordIndex, inputValue, correctWords, totalWords } = useSelector(state => state.wordsSentence);
-  const scrollCurrWordIntoView = useRef();
+  const { sentenceArr, wordIndex, inputValue } = useSelector(state => state.wordsSentence);
 
   useEffect(() => {
     let interval;
@@ -55,7 +54,7 @@ export default function Sentence() {
 
   const sentence = function(scrollCurrWordIntoView) {
     return (
-      <span ref={scrollCurrWordIntoView} key={'parent'} className='current-word'>{checkTypedWord()}</span>
+      <span key={'parent'} className='current-word'>{checkTypedWord()}</span>
     )
   }
 
