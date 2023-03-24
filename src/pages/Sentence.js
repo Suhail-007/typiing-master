@@ -23,6 +23,7 @@ export default function Sentence() {
   }, [dispatch]);
 
   const onKeyPressHandler = function(e) {
+    
     if (e.code !== 'Space') return
     if (!e.target.value.trim().length) return
 

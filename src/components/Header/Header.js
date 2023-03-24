@@ -6,7 +6,7 @@ import RootHeader from './RootHeader';
 import styles from './Header.module.scss'
 
 export default function Header() {
-  const { correctWords, incorrectWords, totalWords, wpm , accuracy, wpmArr} = useSelector(state => state.wordsSentence);
+  const { correctWords, incorrectWords, totalWords, wpm , accuracy, charArr} = useSelector(state => state.wordsSentence);
 
   const { pathname } = useLocation();
 
@@ -30,7 +30,7 @@ export default function Header() {
             </li>
             <li>
               WPM
-              <span>{wpm ? wpm : wpmArr.length}</span>
+              <span>{wpm ? wpm : totalWords.length}</span>
             </li>
           </ul>
         </nav>

@@ -8,7 +8,7 @@ const initialScoreState = {
   sentenceArr: [],
   inputValue: [],
   wordIndex: 0,
-  wpmArr: [],
+  charArr: [],
   wpm: 0,
   accuracy: 0,
 }
@@ -25,7 +25,7 @@ const wordsSentence = createSlice({
       state.incorrectWords = [];
       state.totalWords = [];
       state.inputValue = [];
-      state.wpmArr = [];
+      state.charArr = [];
       state.wpm = 0;
       state.accuracy = 0;
       state.state.wordIndex = 0;
@@ -53,37 +53,41 @@ const wordsSentence = createSlice({
       state.sentenceArr = state.generatedText[0].split(' ');
     },
 
-    //it will check letter on every key stroke
+    //add input value on every key stroke in inputValue arr
     getTypedLetters(state, action) {
       const currLetterArr = action.payload.split('');
+      //remove the previous added value to avoid same values clash 
       state.inputValue = [];
       state.inputValue = [...currLetterArr];
     },
 
     //before increasing word index check if typed word is correct or not then push into the array respectively and also push into totalWords array
     increaseWordIndex(state, action) {
-      const currWord = action.payload;
+      const inputValue = action.payload;
 
-      if (state.sentenceArr[state.wordIndex] === currWord) {
-        state.correctWords.push(currWord);
+      if (state.sentenceArr[state.wordIndex] === inputValue) {
+        state.correctWords.push(inputValue);
       }
       else {
-        state.incorrectWords.push(currWord);
+        state.incorrectWords.push(inputValue);
       }
 
       //increase the wordIndex whether typed word is correct or wrong and clear the input letters
-      state.totalWords.push(currWord);
-      state.wpmArr.push(currWord)
+      //push the inputValue to totalWords arr
+      //add the state.inputValue arr to state.charArr
+      //empty inputValue arr
+      state.totalWords.push(inputValue);
+      state.charArr = [...state.charArr, ...state.inputValue];
       state.wordIndex++;
       state.inputValue = []
     },
 
     calculateWPM(state) {
-      const totalWordsFilter = state.wp.length / 5;
-      state.wpm = totalWordsFilter / 1;
+      const totalCharFilter = state.charArr.length / 5;
+      state.wpm = Math.round(totalCharFilter / 1);
 
       //empty the arr 
-      state.wpmArr = [];
+      state.charArr = [];
     },
 
     calculateAccuracy(state) {
