@@ -6,8 +6,7 @@
     {
       "src": "favicon.ico",
       "sizes": "48x48",
-      "type": "image/x-icon",
-      "purpose": "maskable"
+      "type": "image/x-icon"
     },
     {
       "src": "icon-48x48.png",
@@ -37,14 +36,12 @@
     {
       "src": "icon-284x284.png",
       "type": "image/png",
-      "sizes": "284x284",
-      "purpose": "maskable"
+      "sizes": "284x284"
     },
     {
       "src": "icon-512x512.png",
       "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "maskable"
+      "sizes": "512x512"
     }
   ],
   "start_url": ".",
