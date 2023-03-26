@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { wordsSentenceActions } from '../../store/wordsSentenceSlice';
+import { wordsSentenceActions } from '../../../store/wordsSentenceSlice';
 
 import styles from './mode.module.scss';
 

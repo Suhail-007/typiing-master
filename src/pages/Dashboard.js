@@ -1,4 +1,4 @@
-import Mode from '../components/Mode/Mode';
+import Mode from '../components/UI/Mode/Mode';
 
 import icons from '../assets/icons.svg'
 

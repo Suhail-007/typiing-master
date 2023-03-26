@@ -1,5 +1,5 @@
 import styles from './Header.module.scss'
-import icons from '../../assets/icons.svg';
+import icons from '../../../assets/icons.svg';
 
 export default function RootHeader() {
 

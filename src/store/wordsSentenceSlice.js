@@ -1,3 +1,4 @@
+import { json } from 'react-router-dom';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialScoreState = {
@@ -109,7 +110,7 @@ export const getText = function(action = 'sentence') {
       }
 
     } catch (err) {
-      console.log(err);
+      throw json({ message: 'could not fetch from server, try again.' })
     }
   }
 }

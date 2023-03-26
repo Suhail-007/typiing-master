@@ -27,6 +27,8 @@
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
+
+  <div id="overlay"></div>
   <div id="root"></div>
   <!--
       This HTML file is a template.
@@ -42,14 +44,14 @@
 
   <script>
     if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('../sw.js')
-    .then(registration => {
-    console.log('Sw registered');
-    console.log(registration);
-    })
-    .catch(err => alert('Service worker registration failed, try again or contact developer'));
+      navigator.serviceWorker.register('../sw.js')
+        .then(registration => {
+          console.log('Sw registered');
+          console.log(registration);
+        })
+        .catch(err => alert('Service worker registration failed, try again or contact developer'));
     } else alert('Your system cannot install this website as PWA');
-    </script>
+  </script>
 </body>
 
 </html>

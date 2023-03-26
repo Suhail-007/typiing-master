@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import wordsSentenceReducer from './wordsSentenceSlice';
+import wordsSentence from './wordsSentenceSlice';
+import modalSlice from './modalSlice';
 
 const store = configureStore({
   reducer: {
-    wordsSentence: wordsSentenceReducer,
+    wordsSentence: wordsSentence,
+    modal: modalSlice,
   }
 });
 
