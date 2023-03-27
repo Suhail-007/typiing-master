@@ -1,13 +1,17 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { wordsSentenceActions, getText } from '../store/wordsSentenceSlice';
+import { modalActions } from '../store/modalSlice';
 
+
+import PopUpModal from '../components/UI/Modal/PopUpModal';
 import SkeletonPage from '../components/Layout/pages/SkeletonPage';
 import PageContent from '../components/Layout/pages/Page';
 
 export default function Sentence() {
   const dispatch = useDispatch();
   const { sentenceArr, wordIndex, inputValue } = useSelector(state => state.wordsSentence);
+  const { isOpen, title, message } = useSelector(state => state.modal);
 
   useEffect(() => {
     let interval;
@@ -18,12 +22,22 @@ export default function Sentence() {
       dispatch(wordsSentenceActions.calculateWPM());
     }, 6000 * 10);
 
+    window.addEventListener('offline', e => {
+      dispatch(modalActions.setMessage({ title: 'Device is offline', message: "App won\'t work as expected, it is recommanded to use app with internet on.", isOpen: true }))
+    });
+
     //clear function
-    return () => clearInterval(interval);
+    return () => {
+      window.removeEventListener('offline', e => {
+        dispatch(modalActions.setMessage({ title: 'Device is offline', message: "App won\'t work as expected, it is recommanded to use app with internet on.", isOpen: true }))
+      });
+
+      clearInterval(interval);
+    }
   }, [dispatch]);
 
   const onKeyPressHandler = function(e) {
-    
+
     if (e.code !== 'Space') return
     if (!e.target.value.trim().length) return
 
@@ -67,6 +81,7 @@ export default function Sentence() {
 
   return (
     <>
+    {isOpen && <PopUpModal title={title} message={message} />}
       {sentenceArr.length === 0 && <SkeletonPage />}
       
       {sentenceArr.length !== 0 && <PageContent sentence={sentence} checkWord={checkTypedWord} inputHandler={inputHandler} changeWord={onKeyPressHandler} className={'sentence'} />}

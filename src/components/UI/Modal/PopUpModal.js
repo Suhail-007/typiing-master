@@ -1,16 +1,43 @@
-import styles from 'popUpMessage.module.scss';
+import ReactDOM from 'react-dom';
+import { useDispatch } from 'react-redux';
+import { modalActions } from '../../../store/modalSlice';
+
+import styles from './popUpModal.module.scss';
 
 function PopUpMarkup({ message, title }) {
   return (
     <div className={styles.popUpContainer}>
-      <h2> {title} </h2>
+      <div className={styles.titleCont}>
+        <h2> {title} </h2>
+     
+      </div>
       
-      <p>{message}</p>
+      <div className={styles.messageCont}>
+        <p>{message}</p>
+      </div>
+      
       
       <div className={styles.btnCont}>
-        <button>Close</button>
+        <button data-close='close'>Close</button>
       </div>
     </div>
+  )
+}
+
+
+export function Backdrop({ children }) {
+  const dispatch = useDispatch();
+
+  const closeHandler = function(e) {
+    if (e.target.dataset.close === 'close') dispatch(modalActions.toggleModal());
+  }
+
+  return (
+    <>
+      <div onClick={closeHandler} data-close='close' className={styles.backdrop}>
+        {children}
+      </div>
+    </>
   )
 }
 
@@ -21,10 +48,14 @@ export default function PopUpModal({ message, title }) {
 
   return (
     <>
-      {ReactDOM.createPortal(
-        <PopUpMarkup message={message} title={title} />
-      ,overlay
-      )}
+      {
+        ReactDOM.createPortal(
+          <Backdrop>
+            <PopUpMarkup message={message} title={title} />
+          </Backdrop>
+        ,overlay
+        )
+      }
     </>
   )
 }

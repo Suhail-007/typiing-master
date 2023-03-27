@@ -1,43 +1,43 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-      import RootElement from './pages/RootElement';
-      import Dashboard from './pages/Dashboard';
-      import Sentence from './pages/Sentence';
-      import Word from './pages/Word';
-      import Error from './pages/Error';
+import RootElement from './pages/RootElement';
+import Dashboard from './pages/Dashboard';
+import Sentence from './pages/Sentence';
+import Word from './pages/Word';
+import ErrorPage from './pages/Error/Error';
 
-      import './sass/main.scss';
+import './sass/main.scss';
 
-      const router = createBrowserRouter(
+const router = createBrowserRouter(
   [
-          {
-            path: '/',
-            element: <RootElement />,
-            errorElement: <Error />,
-            children: [
-              {
-                element: <Dashboard />,
-                index: true,
+    {
+      path: '/',
+      element: <RootElement />,
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          element: <Dashboard />,
+          index: true,
         },
-              {
-                path: 'sentence',
-                element: <Sentence />
+        {
+          path: 'sentence',
+          element: <Sentence />
         },
-              {
-                path: 'word',
-                element: <Word />,
+        {
+          path: 'word',
+          element: <Word />,
         }
         ]
     }]
-      );
+);
 
-      function App() {
+function App() {
 
-        return (
-          <>
+  return (
+    <>
      <RouterProvider router={router} />
     </>
-        );
-      }
+  );
+}
 
-      export default App;
+export default App;

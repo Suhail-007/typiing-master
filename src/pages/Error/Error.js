@@ -1,5 +1,7 @@
 import { useRouteError } from 'react-router-dom';
 
+import styles from './Error.module.scss';
+
 export default function ErrorPage() {
   const error = useRouteError();
 
@@ -16,8 +18,9 @@ export default function ErrorPage() {
   }
 
   return (
-    <main>
+    <main className={styles['main__error']}>
       <h1>{title}</h1>
+      
       <section>
         <p>{message}</p>
       </section>

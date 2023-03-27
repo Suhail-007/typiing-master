@@ -1,0 +1,49 @@
+.backdrop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 4;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .3);
+}
+
+.popUpContainer {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  
+  background: #fff;
+  border-radius: .5rem;
+  margin-bottom: 1rem;
+}
+
+.titleCont {
+  box-shadow: 0 .1rem .5rem 0 rgba(0, 0, 0, .3);
+  padding: 2rem 1.5rem;
+}
+
+.messageCont {
+  align-self: center;
+  padding: 2rem;
+  
+  & p {
+    font-size: 1.5rem;
+  }
+}
+
+.btnCont {
+  align-self: flex-end;
+  padding: 0 1.5rem 2rem;
+  
+  & button {
+    background: none;
+    border: .2rem solid #0A9DFF;
+    padding: 1rem 1.5rem;
+    border-radius: .5rem;
+  }
+}
