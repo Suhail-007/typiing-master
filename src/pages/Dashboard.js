@@ -13,7 +13,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     window.addEventListener('offline', e => {
-      dispatch(modalActions.setMessage({ title: 'Device is offline', message: "App won\'t work as expected, it is recommanded to use app with internet on.", isOpen: true }))
+      dispatch(modalActions.setMessage({ title: 'Device is offline', message: "App won't work as expected, it is recommanded to use app with internet on.", isOpen: true }))
     });
 
     return () => {
@@ -21,7 +21,7 @@ export default function Dashboard() {
         // dispatch(modalActions.setMessage({ title: 'Device is offline', message: "App won\'t work as expected, it is recommanded to use app with internet on.", isOpen: true }))
       });
     }
-  }, [])
+  }, [dispatch])
 
 
   return (
