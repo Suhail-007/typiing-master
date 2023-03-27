@@ -61,9 +61,7 @@ export default function Sentence() {
       if (inputValue.length === 0 || inputValue[i] === undefined) className = '';
       else className = `${inputValue[i] === l ? 'correct-word' : 'wrong-word'}`
 
-      return (
-        <span key={i} className={className}>{l}</span>
-      )
+      return <span key={i} className={className}>{l}</span>
     })
   }
 
