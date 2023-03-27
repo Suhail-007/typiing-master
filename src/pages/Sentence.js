@@ -44,7 +44,7 @@ export default function Sentence() {
     return currentWord.split('').map((l, i) => {
       let className;
 
-      if (inputValue.length === 0) className = ''
+      if (inputValue.length === 0 || inputValue[i] === undefined) className = '';
       else className = `${inputValue[i] === l ? 'correct-word' : 'wrong-word'}`
 
       return (
@@ -53,11 +53,11 @@ export default function Sentence() {
     })
   }
 
-  const sentence = function(scrollCurrWordIntoView) {
+  const sentence = function(currWordRef) {
     return sentenceArr.map((word, index) => {
       if (index === wordIndex) {
         return (
-          <span ref={scrollCurrWordIntoView} key={'parent'} className='current-word'>{checkTypedWord()}</span>
+          <span ref={currWordRef} key={'parent'} className='current-word'>{checkTypedWord()}</span>
         )
       }
       return ` ${word} `

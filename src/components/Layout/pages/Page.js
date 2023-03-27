@@ -6,7 +6,8 @@ import styles from './page.module.scss';
 
 
 export default function Page({ changeWord, inputHandler, checkWord, sentence, className }) {
-  const scrollCurrWordIntoView = useRef();
+
+  const currWordRef = useRef();
 
   function onInputHandler(e) {
     inputHandler(e);
@@ -15,14 +16,14 @@ export default function Page({ changeWord, inputHandler, checkWord, sentence, cl
 
   function onKeyDownHandler(e) {
     changeWord(e);
-    scrollCurrWordIntoView.current.scrollIntoView({ behavior: "smooth", inline: "nearest", block: "start" });
+    currWordRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   return (
     <main className={`${styles.main} ${className}`}>
       <section className={styles['generated-text']}>
         <p>
-          {sentence(scrollCurrWordIntoView)} 
+          {sentence(currWordRef)} 
         </p>
       </section>
       <section className={styles['textarea-cont']}>
@@ -35,4 +36,3 @@ export default function Page({ changeWord, inputHandler, checkWord, sentence, cl
     </main>
   )
 }
-
