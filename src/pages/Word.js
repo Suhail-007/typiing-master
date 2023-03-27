@@ -22,14 +22,14 @@ export default function Sentence() {
     }, 6000 * 10);
 
     window.addEventListener('offline', e => {
-      dispatch(modalActions.setMessage({ title: 'Device is offline', message: "App won\'t work as expected, it is recommanded to use app with internet on.", isOpen: true }))
+      dispatch(modalActions.setMessage({ title: 'Device is offline', message: "App won't work as expected, it is recommanded to use app with internet on.", isOpen: true }))
     });
 
     //clear function
     return () => {
 
       window.removeEventListener('offline', e => {
-        dispatch(modalActions.setMessage({ title: 'Device is offline', message: "App won\'t work as expected, it is recommanded to use app with internet on.", isOpen: true }))
+        dispatch(modalActions.setMessage({ title: 'Device is offline', message: "App won't work as expected, it is recommanded to use app with internet on.", isOpen: true }))
       });
       clearInterval(interval);
     }
