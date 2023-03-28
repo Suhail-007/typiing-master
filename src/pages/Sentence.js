@@ -69,7 +69,7 @@ export default function Sentence() {
     return sentenceArr.map((word, index) => {
       if (index === wordIndex) {
         return (
-          <span ref={currWordRef} key={'parent'} className='current-word'>{checkTypedWord()}</span>
+          <span ref={currWordRef} key={Date.now()} className='current-word'>{checkTypedWord()}</span>
         )
       }
       return ` ${word} `

@@ -101,7 +101,7 @@ export const getText = function(action = 'sentence') {
   return async (dispatch) => {
     try {
 
-      const res = await fetch('https://api.quotable.io/quotes/random?minLength=100');
+      const res = await fetch('https://api.quotable.io/quotes/random?minLength=200');
       const data = await res.json();
       dispatch(wordsSentence.actions.getGeneratedText(data));
 

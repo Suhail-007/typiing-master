@@ -31,11 +31,6 @@ body {
 .current-word {
   display: inline;
   background: hsla(207, 100%, 90%, .5);
-
-  & p {
-    display: inline;
-    color: #008AFF;
-  }
 }
 
 .correct-word {

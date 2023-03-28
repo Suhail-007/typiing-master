@@ -20,7 +20,7 @@ export default function SkeletonPage() {
       
       <section className={styles['correct-para']}>
         <p>
-          <SkeletonTheme baseColor='#A5D5B4' highlightColor='hsla(139, 46%, 74%, 1)'>
+          <SkeletonTheme baseColor='#A5D5B4' highlightColor='hsla(143, 50%, 50%, 1)'>
             <Skeleton count={4} style={{marginBottom: '5px'}} />
           </SkeletonTheme>
         </p>

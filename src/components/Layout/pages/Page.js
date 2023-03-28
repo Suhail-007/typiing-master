@@ -8,13 +8,14 @@ import styles from './page.module.scss';
 export default function Page({ changeWord, inputHandler, checkWord, sentence, className }) {
 
   const currWordRef = useRef();
-
+const parentRef = useRef()
   function onInputHandler(e) {
     inputHandler(e);
     checkWord();
   }
 
   function onKeyDownHandler(e) {
+    parentRef.current.scrollTop = 40;
     changeWord(e);
     currWordRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
   }
@@ -22,7 +23,7 @@ export default function Page({ changeWord, inputHandler, checkWord, sentence, cl
   return (
     <main className={`${styles.main} ${className}`}>
       <section className={styles['generated-text']}>
-        <p>
+        <p ref={parentRef}>
           {sentence(currWordRef)} 
         </p>
       </section>
