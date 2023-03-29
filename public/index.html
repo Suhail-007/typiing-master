@@ -41,15 +41,6 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
 
-
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('../sw.js')
-        .then(registration => {
-        })
-        .catch(err => alert('Service worker registration failed, try again or contact developer'));
-    } else alert('Your system cannot install this website as PWA');
-  </script>
 </body>
 
 </html>
