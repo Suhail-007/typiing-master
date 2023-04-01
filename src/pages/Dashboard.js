@@ -5,21 +5,21 @@ import { modalActions } from '../store/modalSlice';
 import Mode from '../components/UI/Mode/Mode';
 import PopUpModal from '../components/UI/Modal/PopUpModal';
 
-import icons from '../assets/icons.svg'
+import icons from '../assets/icons.svg';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
   const { title, message, isOpen } = useSelector(state => state.modal);
 
   useEffect(() => {
+
     window.addEventListener('offline', e => {
-      dispatch(modalActions.setMessage({ title: 'Device is offline', message: "App won't work as expected, it is recommanded to use app with internet on.", isOpen: true }))
+
+      dispatch(modalActions.setMessage({ title: 'Device is offline', message: "App won't work as expected, it is recommanded to use app with internet on.", isOpen: true }));
     });
 
     return () => {
-      window.removeEventListener('offline', e => {
-        // dispatch(modalActions.setMessage({ title: 'Device is offline', message: "App won\'t work as expected, it is recommanded to use app with internet on.", isOpen: true }))
-      });
+      window.removeEventListener('offline', e => {});
     }
   }, [dispatch])
 
