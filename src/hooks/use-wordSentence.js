@@ -7,11 +7,11 @@ import { modalActions } from '../store/modalSlice';
 export default function useWordSentence(isWordTab) {
   const dispatch = useDispatch();
   const { sentenceArr, wordIndex, inputValue } = useSelector(state => state.wordsSentence);
-  const { isOpen, title, message } = useSelector(state => state.modal);
   let sentence;
 
   useEffect(() => {
     let interval;
+    
     if (isWordTab) dispatch(getText('words'));
     else dispatch(getText('words'));
 
@@ -30,7 +30,7 @@ export default function useWordSentence(isWordTab) {
 
       clearInterval(interval);
     }
-  }, [dispatch]);
+  }, [dispatch, isWordTab]);
 
 
   const onKeyPressHandler = function(e) {
