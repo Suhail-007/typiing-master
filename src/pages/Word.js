@@ -1,17 +1,12 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import useWordSentence from '../hooks/use-wordSentence';
-
-import { wordsSentenceActions, getText } from '../store/wordsSentenceSlice';
-import { modalActions } from '../store/modalSlice';
 
 import PopUpModal from '../components/UI/Modal/PopUpModal';
 import SkeletonPage from '../components/Layout/pages/SkeletonPage'
 import PageContent from '../components/Layout/pages/Page';
 
 export default function Sentence() {
-  const dispatch = useDispatch();
-  const { sentenceArr, wordIndex, inputValue } = useSelector(state => state.wordsSentence);
+  const { sentenceArr } = useSelector(state => state.wordsSentence);
   const { isOpen, title, message } = useSelector(state => state.modal);
 
   const wordSentence = useWordSentence(true);
