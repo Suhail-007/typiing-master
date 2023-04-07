@@ -97,17 +97,19 @@ const wordsSentence = createSlice({
   }
 });
 
-export const getText = function(action = 'sentence') {
+export const getText = function(action) {
   return async (dispatch) => {
     try {
 
       const res = await fetch('https://api.quotable.io/quotes/random?minLength=200');
       const data = await res.json();
-      dispatch(wordsSentence.actions.getGeneratedText(data));
-
+      
       if (action === 'words') {
+        dispatch(wordsSentence.actions.getGeneratedText(data));
         dispatch(wordsSentence.actions.filterWords())
       }
+      
+      if (action === 'sentence') dispatch(wordsSentence.actions.getGeneratedText(data));
 
     } catch (err) {
       throw json({ message: 'could not fetch from server, try again.' })

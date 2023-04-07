@@ -1,16 +1,18 @@
+import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import useWordSentence from '../hooks/use-wordSentence';
 
 
 import PopUpModal from '../components/UI/Modal/PopUpModal';
-import SkeletonPage from '../components/Layout/pages/SkeletonPage';
-import PageContent from '../components/Layout/pages/Page';
+import SkeletonPage from '../components/Layout/page/SkeletonPage';
+import PageContent from '../components/Layout/page/Page';
 
-export default function Sentence() {
+const Sentence = function() {
   const { sentenceArr } = useSelector(state => state.wordsSentence);
   const { isOpen, title, message } = useSelector(state => state.modal);
+  const currWordRef = useRef();
 
-  const wordSentence = useWordSentence(false);
+  const wordSentence = useWordSentence.render(false, currWordRef);
 
   const onKeyPressHandler = function(e) {
     wordSentence.onKeyPressHandler(e);
@@ -18,14 +20,15 @@ export default function Sentence() {
 
   const inputHandler = function(e) {
     wordSentence.inputHandler(e);
+    currWordRef.current.scrollIntoView(true,{ behavior: "smooth", block: "start"});
   }
 
   const checkTypedWord = function() {
     wordSentence.checkTypedWord();
   }
 
-  const sentence = function(currWordRef) {
-    return wordSentence.sentence(currWordRef)
+  const sentence = function() {
+    return wordSentence.sentence()
   }
 
   return (
@@ -38,3 +41,5 @@ export default function Sentence() {
     </>
   )
 }
+
+export default Sentence

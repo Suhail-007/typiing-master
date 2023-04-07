@@ -14,7 +14,7 @@ font-family: 'Tenor Sans', sans-serif;*/
 html {
   //1REM === 10PX
   font-size: 62.5%;
-  
+
   @include respon(sm-phone) {
     font-size: 45%;
   }
