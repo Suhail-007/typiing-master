@@ -1,4 +1,4 @@
-import { useEffect, forwardRef } from 'react';
+import { useEffect, forwardRef, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { wordsSentenceActions, getText } from '../store/wordsSentenceSlice';
 import { modalActions } from '../store/modalSlice';
@@ -8,6 +8,11 @@ const useWordSentence = forwardRef((isWordTab, ref) => {
   const dispatch = useDispatch();
   const { sentenceArr, wordIndex, inputValue } = useSelector(state => state.wordsSentence);
   let sentence;
+
+  const checkTab = useMemo(() => function(isWordTab) {
+    if (isWordTab) dispatch(getText('words'));
+    else dispatch(getText('sentence'));
+  }, [isWordTab]);
 
   useEffect(() => {
     let interval;
@@ -29,12 +34,7 @@ const useWordSentence = forwardRef((isWordTab, ref) => {
 
       clearInterval(interval);
     }
-  }, [dispatch, isWordTab]);
-
-  const checkTab = function(isWordTab) {
-    if (isWordTab) dispatch(getText('words'));
-    else dispatch(getText('sentence'));
-  }
+  }, [dispatch, isWordTab, checkTab]);
 
   const onKeyPressHandler = function(e) {
     if (e.code !== 'Space') return
