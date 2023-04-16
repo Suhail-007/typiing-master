@@ -12,7 +12,7 @@ const useWordSentence = forwardRef((isWordTab, ref) => {
   const checkTab = useMemo(() => function(isWordTab) {
     if (isWordTab) dispatch(getText('words'));
     else dispatch(getText('sentence'));
-  }, [isWordTab, dispatch]);
+  }, [dispatch]);
 
   useEffect(() => {
     let interval;
