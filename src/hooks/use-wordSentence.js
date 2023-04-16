@@ -8,12 +8,11 @@ const useWordSentence = forwardRef((isWordTab, ref) => {
   const dispatch = useDispatch();
   const { sentenceArr, wordIndex, inputValue } = useSelector(state => state.wordsSentence);
   let sentence;
-  
+
   useEffect(() => {
     let interval;
 
-    if (isWordTab) dispatch(getText('words'));
-    else dispatch(getText('sentence'));
+    checkTab(isWordTab);
 
     //calculate WPM on every min
     interval = setInterval(() => {
@@ -32,6 +31,10 @@ const useWordSentence = forwardRef((isWordTab, ref) => {
     }
   }, [dispatch, isWordTab]);
 
+  const checkTab = function(isWordTab) {
+    if (isWordTab) dispatch(getText('words'));
+    else dispatch(getText('sentence'));
+  }
 
   const onKeyPressHandler = function(e) {
     if (e.code !== 'Space') return
@@ -45,7 +48,8 @@ const useWordSentence = forwardRef((isWordTab, ref) => {
 
   const inputHandler = function(e) {
     //fetch sentence if only ten words remains
-    if ((sentenceArr.length - wordIndex) === 10) dispatch(getText('words'));
+    if ((sentenceArr.length - wordIndex) === 10) checkTab(isWordTab);
+
     dispatch(wordsSentenceActions.getTypedLetters(e.target.value));
   }
 
@@ -61,7 +65,6 @@ const useWordSentence = forwardRef((isWordTab, ref) => {
       return <span  key={i} className={className}>{l}</span>
     })
   }
-
 
   if (isWordTab) {
     sentence = function() {

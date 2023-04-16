@@ -50,7 +50,7 @@ const wordsSentence = createSlice({
         return accu + ' ' + curr
       }, '').trim()];
 
-      //fill the words arr once the we get the data from the server so we don't do it on every re render/evaluate.
+      //fill the sentece arr once we get the data from the server so we don't do it on every re-render.
       state.sentenceArr = state.generatedText[0].split(' ');
     },
 
@@ -62,20 +62,16 @@ const wordsSentence = createSlice({
       state.inputValue = [...currLetterArr];
     },
 
-    //before increasing word index check if typed word is correct or not then push into the array respectively and also push into totalWords array
+    //before increasing word index check if typed word is correct or not then push into the array respectively.
     increaseWordIndex(state, action) {
       const inputValue = action.payload;
 
-      if (state.sentenceArr[state.wordIndex] === inputValue) {
-        state.correctWords.push(inputValue);
-      }
-      else {
-        state.incorrectWords.push(inputValue);
-      }
+      if (state.sentenceArr[state.wordIndex] === inputValue) state.correctWords.push(inputValue);
+      else state.incorrectWords.push(inputValue);
 
       //increase the wordIndex whether typed word is correct or wrong and clear the input letters
       //push the inputValue to totalWords arr
-      //add the state.inputValue arr to state.charArr
+      //concat the state.inputValue arr and state.charArr
       //empty inputValue arr
       state.totalWords.push(inputValue);
       state.charArr = [...state.charArr, ...state.inputValue];
@@ -103,12 +99,12 @@ export const getText = function(action) {
 
       const res = await fetch('https://api.quotable.io/quotes/random?minLength=200');
       const data = await res.json();
-      
+
       if (action === 'words') {
         dispatch(wordsSentence.actions.getGeneratedText(data));
         dispatch(wordsSentence.actions.filterWords())
       }
-      
+
       if (action === 'sentence') dispatch(wordsSentence.actions.getGeneratedText(data));
 
     } catch (err) {
