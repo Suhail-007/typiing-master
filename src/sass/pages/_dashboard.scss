@@ -22,5 +22,7 @@
     grid-column: 1/-1;
     font-weight: 600;
     letter-spacing: 1px;
+    line-height: 120%;
+    animation: bounceUp 1000ms ease-in-out infinite alternate;
   }
 }

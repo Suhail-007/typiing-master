@@ -6,14 +6,14 @@
   margin: 0;
 }
 
-/* 
-font-family: 'Assistant', sans-serif;
-font-family: 'Sen', sans-serif;
-font-family: 'Tenor Sans', sans-serif;*/
-
 html {
   //1REM === 10PX
   font-size: 62.5%;
+
+//1REM === 7.2PX
+  @include respon(sm-phone) {
+    font-size: 45%;
+  }
 }
 
 body {
@@ -40,4 +40,16 @@ body {
 .wrong-word {
   color: hsla(0, 100%, 49%, 1);
   text-decoration: underline;
+}
+
+
+//animation
+@keyframes bounceUp {
+  0% {
+    scale: 1;
+  }
+
+  100% {
+    scale: 1.1;
+  }
 }

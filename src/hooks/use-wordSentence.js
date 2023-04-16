@@ -1,19 +1,18 @@
-import { useEffect } from 'react';
+import { useEffect, forwardRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { wordsSentenceActions, getText } from '../store/wordsSentenceSlice';
 import { modalActions } from '../store/modalSlice';
 
 
-export default function useWordSentence(isWordTab) {
+const useWordSentence = forwardRef((isWordTab, ref) => {
   const dispatch = useDispatch();
   const { sentenceArr, wordIndex, inputValue } = useSelector(state => state.wordsSentence);
-  const { isOpen, title, message } = useSelector(state => state.modal);
   let sentence;
 
   useEffect(() => {
     let interval;
-    if (isWordTab) dispatch(getText('words'));
-    else dispatch(getText('words'));
+
+    checkTab(isWordTab);
 
     //calculate WPM on every min
     interval = setInterval(() => {
@@ -30,8 +29,12 @@ export default function useWordSentence(isWordTab) {
 
       clearInterval(interval);
     }
-  }, [dispatch]);
+  }, [dispatch, isWordTab]);
 
+  const checkTab = function(isWordTab) {
+    if (isWordTab) dispatch(getText('words'));
+    else dispatch(getText('sentence'));
+  }
 
   const onKeyPressHandler = function(e) {
     if (e.code !== 'Space') return
@@ -45,7 +48,8 @@ export default function useWordSentence(isWordTab) {
 
   const inputHandler = function(e) {
     //fetch sentence if only ten words remains
-    if ((sentenceArr.length - wordIndex) === 10) dispatch(getText('words'));
+    if ((sentenceArr.length - wordIndex) === 10) checkTab(isWordTab);
+
     dispatch(wordsSentenceActions.getTypedLetters(e.target.value));
   }
 
@@ -58,22 +62,22 @@ export default function useWordSentence(isWordTab) {
       if (inputValue.length === 0 || inputValue[i] === undefined) className = '';
       else className = `${inputValue[i] === l ? 'correct-word' : 'wrong-word'}`
 
-      return <span key={i} className={className}>{l}</span>
+      return <span  key={i} className={className}>{l}</span>
     })
   }
 
   if (isWordTab) {
-    sentence = function(currWordRef) {
+    sentence = function() {
       return (
-        <span ref={currWordRef} key={'parent'} className='current-word'>{checkTypedWord()}</span>
+        <span ref={ref} key={Date.now()} className='current-word'>{checkTypedWord()}</span>
       )
     }
   } else {
-    sentence = function(currWordRef) {
+    sentence = function() {
       return sentenceArr.map((word, index) => {
         if (index === wordIndex) {
           return (
-            <span ref={currWordRef} key={Date.now()} className='current-word'>{checkTypedWord()}</span>
+            <span ref={ref} key={Date.now()} className='current-word'>{checkTypedWord()}</span>
           )
         }
         return ` ${word} `
@@ -88,4 +92,6 @@ export default function useWordSentence(isWordTab) {
     checkTypedWord,
     sentence
   }
-}
+})
+
+export default useWordSentence;
