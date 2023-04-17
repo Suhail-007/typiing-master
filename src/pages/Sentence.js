@@ -20,7 +20,7 @@ const Sentence = function() {
 
   const inputHandler = function(e) {
     wordSentence.inputHandler(e);
-    currWordRef.current.scrollIntoView(true,{ behavior: "smooth", block: "start"});
+    currWordRef.current.scrollIntoView({ block: "start"});
   }
 
   const checkTypedWord = function() {

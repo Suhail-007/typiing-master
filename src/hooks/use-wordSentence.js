@@ -47,8 +47,8 @@ const useWordSentence = forwardRef((isWordTab, ref) => {
   }
 
   const inputHandler = function(e) {
-    //fetch sentence if only ten words remains
-    if ((sentenceArr.length - wordIndex) === 10) checkTab(isWordTab);
+    //fetch sentence if only thirty words remains
+    if ((sentenceArr.length - wordIndex) === 30) checkTab(isWordTab);
 
     dispatch(wordsSentenceActions.getTypedLetters(e.target.value));
   }
