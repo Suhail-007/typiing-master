@@ -28,7 +28,7 @@ export default function Dashboard() {
     <>
       {isOpen && <PopUpModal title={title} message={message}  />}
       
-      <article className='dashboard'>
+      <main className='dashboard'>
           <div className='intro'>
             <p>Welcome.! Type as fast as you can and Measure your typing speed.</p>
           </div>
@@ -37,7 +37,7 @@ export default function Dashboard() {
             <Mode name="Sentence" icon={`${icons}#icon-sentence`} />
           
           <p className='start'>Click on icons to get start.</p>
-        </article>
+        </main>
     </>
   )
 }

@@ -15,9 +15,10 @@ const modalSlice = createSlice({
     },
 
     setMessage(state, action) {
-      state.message = action.payload.message;
-      state.title = action.payload.title;
-      state.isOpen = action.payload.isOpen
+      const { message, title, isOpen } = action.payload;
+      state.message = message;
+      state.title = title;
+      state.isOpen = isOpen
     },
   }
 });
