@@ -18,6 +18,7 @@ export default function Sentence() {
   }
 
   const inputHandler = function(e) {
+    if(e.target !== 'Space') return
     wordSentence.inputHandler(e);
     currWordRef.current.scrollIntoView(true, { behavior: "smooth", block: "start" });
   }

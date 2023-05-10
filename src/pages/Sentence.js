@@ -15,12 +15,14 @@ const Sentence = function() {
   const wordSentence = useWordSentence.render(false, currWordRef);
 
   const onKeyPressHandler = function(e) {
+    if (e.code !== 'Space') return
     wordSentence.onKeyPressHandler(e);
+    currWordRef.current.scrollIntoView({ block: "start"});
+
   }
 
   const inputHandler = function(e) {
     wordSentence.inputHandler(e);
-    currWordRef.current.scrollIntoView({ block: "start"});
   }
 
   const checkTypedWord = function() {

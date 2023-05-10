@@ -16,8 +16,8 @@
     padding: 1rem;
     border-radius: .3rem;
     width: 100%;
+    overflow: scroll hidden;
     max-height: $max-height;
-    overflow: scroll;
     color: $primary-color;
 
     & p {
