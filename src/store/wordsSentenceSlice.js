@@ -36,12 +36,12 @@ const wordsSentence = createSlice({
       state.inputValue = [];
     },
 
-    filterWords(state) {
-      state.sentenceArr = state.sentenceArr.filter(word => word.length >= 4);
-    },
+    // filterWords(state) {
+    //   state.sentenceArr = state.sentenceArr.filter(word => word.length >= 7);
+    // },
 
     getGeneratedText(state, action) {
-      const data = action.payload;
+      const { data, filter } = action.payload;
 
       state.generatedText = [state.generatedText, data[0].content] || [];
 
@@ -52,6 +52,8 @@ const wordsSentence = createSlice({
 
       //fill the sentece arr once we get the data from the server so we don't do it on every re-render.
       state.sentenceArr = state.generatedText[0].split(' ');
+
+      if (filter) state.sentenceArr = state.sentenceArr.filter(word => word.length > 7);
     },
 
     //add input value on every key stroke in inputValue arr
@@ -93,7 +95,7 @@ const wordsSentence = createSlice({
   }
 });
 
-export const getText = function(action) {
+export const getText = function (action) {
   return async (dispatch) => {
     try {
 
@@ -101,11 +103,10 @@ export const getText = function(action) {
       const data = await res.json();
 
       if (action === 'words') {
-        dispatch(wordsSentence.actions.getGeneratedText(data));
-        dispatch(wordsSentence.actions.filterWords())
+        dispatch(wordsSentence.actions.getGeneratedText({ data, filter: true }));
       }
 
-      if (action === 'sentence') dispatch(wordsSentence.actions.getGeneratedText(data));
+      if (action === 'sentence') dispatch(wordsSentence.actions.getGeneratedText({ data, filter: false }));
 
     } catch (err) {
       throw json({ message: 'could not fetch from server, try again.' })

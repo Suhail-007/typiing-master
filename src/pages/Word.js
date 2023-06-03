@@ -13,29 +13,29 @@ export default function Sentence() {
 
   const wordSentence = useWordSentence.render(true, currWordRef);
 
-  const onKeyPressHandler = function(e) {
+  const onKeyPressHandler = function (e) {
+    if (e.code !== 'Space') return
     wordSentence.onKeyPressHandler(e);
+    currWordRef.current.scrollIntoView({ block: "start"});
   }
 
-  const inputHandler = function(e) {
-    if(e.target !== 'Space') return
+  const inputHandler = function (e) {
     wordSentence.inputHandler(e);
-    currWordRef.current.scrollIntoView(true, { behavior: "smooth", block: "start" });
   }
 
-  const checkTypedWord = function() {
+  const checkTypedWord = function () {
     wordSentence.checkTypedWord();
   }
 
-  const sentence = function() {
+  const sentence = function () {
     return wordSentence.sentence()
   }
 
   return (
     <>
-    {isOpen && <PopUpModal title={title} message={message} />}
-    {sentenceArr.length === 0 && <SkeletonPage />}
-    {sentenceArr.length !== 0 && <PageContent className={'word'} sentence={sentence} checkWord={checkTypedWord} inputHandler={inputHandler} changeWord={onKeyPressHandler} />}
+      {isOpen && <PopUpModal title={title} message={message} />}
+      {sentenceArr.length === 0 && <SkeletonPage />}
+      {sentenceArr.length !== 0 && <PageContent className={'word'} sentence={sentence} checkWord={checkTypedWord} inputHandler={inputHandler} changeWord={onKeyPressHandler} />}
     </>
   )
 }

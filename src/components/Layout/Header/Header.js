@@ -31,6 +31,10 @@ export default function Header() {
               WPM
               <span>{wpm ? wpm : totalWords.length}</span>
             </li>
+            <li className={styles['header__totalWords']}>
+              Total Words
+              <span>{totalWords.length}</span>
+            </li>
           </ul>
         </nav>
     </header>

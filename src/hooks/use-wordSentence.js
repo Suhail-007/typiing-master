@@ -1,4 +1,4 @@
-import { useEffect, forwardRef, useMemo } from 'react';
+import { useEffect, forwardRef, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { wordsSentenceActions, getText } from '../store/wordsSentenceSlice';
 import { modalActions } from '../store/modalSlice';
@@ -7,9 +7,8 @@ import { modalActions } from '../store/modalSlice';
 const useWordSentence = forwardRef((isWordTab, ref) => {
   const dispatch = useDispatch();
   const { sentenceArr, wordIndex, inputValue } = useSelector(state => state.wordsSentence);
-  let sentence;
 
-  const checkTab = useMemo(() => function(isWordTab) {
+  const checkTab = useCallback(function (isWordTab) {
     if (isWordTab) dispatch(getText('words'));
     else dispatch(getText('sentence'));
   }, [dispatch]);
@@ -30,13 +29,13 @@ const useWordSentence = forwardRef((isWordTab, ref) => {
 
     //clear function
     return () => {
-      window.removeEventListener('offline', e => {});
+      window.removeEventListener('offline', e => { });
 
       clearInterval(interval);
     }
   }, [dispatch, isWordTab, checkTab]);
 
-  const onKeyPressHandler = function(e) {
+  const onKeyPressHandler = function (e) {
     if (e.code !== 'Space') return
     if (!e.target.value.trim().length) return
 
@@ -46,14 +45,14 @@ const useWordSentence = forwardRef((isWordTab, ref) => {
     e.target.value = ''
   }
 
-  const inputHandler = function(e) {
+  const inputHandler = function (e) {
     //fetch sentence if only thirty words remains
     if ((sentenceArr.length - wordIndex) === 30) checkTab(isWordTab);
 
     dispatch(wordsSentenceActions.getTypedLetters(e.target.value));
   }
 
-  const checkTypedWord = function() {
+  const checkTypedWord = function () {
     const currentWord = sentenceArr[wordIndex];
     //we are looping over the current word in the word array and checking if typed letter is same as current word letter and adding class respectively.
     return currentWord.split('').map((l, i) => {
@@ -62,18 +61,15 @@ const useWordSentence = forwardRef((isWordTab, ref) => {
       if (inputValue.length === 0 || inputValue[i] === undefined) className = '';
       else className = `${inputValue[i] === l ? 'correct-word' : 'wrong-word'}`
 
-      return <span  key={i} className={className}>{l}</span>
+      return <span key={i} className={className}>{l}</span>
     })
   }
 
-  if (isWordTab) {
-    sentence = function() {
-      return (
-        <span ref={ref} key={Date.now()} className='current-word'>{checkTypedWord()}</span>
-      )
-    }
-  } else {
-    sentence = function() {
+  function sentence() {
+    if (isWordTab) return (
+      <span ref={ref} key={Date.now()} className='current-word'>{checkTypedWord()}</span>
+    )
+    else {
       return sentenceArr.map((word, index) => {
         if (index === wordIndex) {
           return (

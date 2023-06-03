@@ -6,4 +6,11 @@
       @content
     }
   }
+
+
+  @if $breakpoint==m-desktop {
+    @media only screen and (min-width: 90em) {
+      @content
+    }
+  }
 }

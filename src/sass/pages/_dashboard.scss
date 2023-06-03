@@ -6,6 +6,9 @@
   row-gap: 6rem;
   min-height: 80vh;
 
+  max-width: 90rem;
+  margin-inline: auto;
+
   & .intro {
     grid-column: 1 / -1;
     text-align: center;
@@ -26,3 +29,9 @@
     animation: bounceUp 1000ms ease-in-out infinite alternate;
   }
 }
+
+// @media only screen and (min-width: 90em) {
+//   .dashboard [
+//     max-width: ;
+//   ]
+// }
