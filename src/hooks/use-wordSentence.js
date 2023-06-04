@@ -16,9 +16,10 @@ const useWordSentence = forwardRef((isWordTab, ref) => {
   useEffect(() => {
     let interval;
 
+    //fetch text from server
     checkTab(isWordTab);
 
-    //calculate WPM on every min
+    //calculate WPM in every min
     interval = setInterval(() => {
       dispatch(wordsSentenceActions.calculateWPM());
     }, 6000 * 10);
@@ -46,8 +47,10 @@ const useWordSentence = forwardRef((isWordTab, ref) => {
   }
 
   const inputHandler = function (e) {
-    //fetch sentence if only thirty words remains
-    if ((sentenceArr.length - wordIndex) === 30) checkTab(isWordTab);
+    //fetch sentence if only thirty words remains for sentence tab
+    if ((sentenceArr.length - wordIndex === 30) && !isWordTab) checkTab(isWordTab);
+    //fetch sentence if less or equal to 10 words remains for words tab
+    if ((sentenceArr.length - wordIndex <= 10) && isWordTab) checkTab(isWordTab);
 
     dispatch(wordsSentenceActions.getTypedLetters(e.target.value));
   }
