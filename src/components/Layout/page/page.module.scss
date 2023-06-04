@@ -20,19 +20,23 @@
     max-height: $max-height;
     color: $primary-color;
 
-    display: flex;
-    justify-content: center;
-
     & p {
       font-size: 1.8rem;
-      font-family: 'Assistant', sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       letter-spacing: 1px;
       line-height: 1.5;
-      position: relative;
-      text-align: justify;
 
+      position: relative;
       margin-inline: auto;
     }
+  }
+
+  .sentence {
+    text-align: justify;
+  }
+
+  .words {
+    text-align: center;
   }
 
   .textarea-cont {
@@ -64,15 +68,17 @@
   .correct-para,
   .typed-para {
     max-height: $max-height;
-    width: 90%;
+    width: 80%;
     padding: 1rem 1.5rem;
     border-radius: .5rem;
     overflow: hidden scroll;
-    text-align: center;
     color: $primary-color;
     font-size: 1.4rem;
     position: relative;
     font-family: 'Assistant', sans-serif;
+
+    display: flex;
+    justify-content: center;
   }
 
   .correct-para {
@@ -90,17 +96,38 @@
   }
 }
 
+.typed-correct-para-cont {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
 @media only screen and (min-width: 75em) {
-  .generated-text {
-    & p {
-      width: 80%;
-      padding: 1rem;
+  .main {
+    $max-height: 20rem;
+
+    .generated-text {
+      & p {
+        width: 80%;
+        padding: 1rem;
+      }
     }
-  }
 
-  .correct-para,
-  .typed-para {
-    width: 80%;
-  }
+    .typed-correct-para-cont {
+      padding-inline: 2rem;
+      flex-direction: row;
+      justify-content: center;
+      align-items: stretch;
+      gap: 3rem;
+    }
 
+    .correct-para,
+    .typed-para {
+      max-height: $max-height;
+    }
+
+  }
 }
