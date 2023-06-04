@@ -41,7 +41,7 @@ const wordsSentence = createSlice({
     },
 
     getGeneratedText(state, action) {
-      const { data, filter } = action.payload;
+      const data = action.payload;
 
       state.generatedText = [state.generatedText, data[0].content] || [];
 
@@ -53,7 +53,6 @@ const wordsSentence = createSlice({
       //fill the sentece arr once we get the data from the server so we don't do it on every re-render.
       state.sentenceArr = state.generatedText[0].split(' ');
 
-      // if (filter) state.sentenceArr = state.sentenceArr.filter(word => word.length > 7);
     },
 
     //add input value on every key stroke in inputValue arr
@@ -102,13 +101,12 @@ export const getText = function (action) {
       const res = await fetch('https://api.quotable.io/quotes/random?minLength=200');
       const data = await res.json();
 
-
       if (action === 'words') {
-        dispatch(wordsSentence.actions.getGeneratedText({ data, filter: true }));
+        dispatch(wordsSentence.actions.getGeneratedText(data));
         dispatch(wordsSentence.actions.filterWords());
       }
 
-      if (action === 'sentence') dispatch(wordsSentence.actions.getGeneratedText({ data, filter: false }));
+      if (action === 'sentence') dispatch(wordsSentence.actions.getGeneratedText(data));
 
     } catch (err) {
       throw json({ message: 'could not fetch from server, try again.' })
