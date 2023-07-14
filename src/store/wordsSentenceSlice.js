@@ -50,7 +50,7 @@ const wordsSentence = createSlice({
         return accu + ' ' + curr
       }, '').trim()];
 
-      //fill the sentece arr once we get the data from the server so we don't do it on every re-render.
+      //fill the sentece arr once we get the data from the server to avoid doing it on every re-render.
       state.sentenceArr = state.generatedText[0].split(' ');
 
     },
@@ -73,7 +73,7 @@ const wordsSentence = createSlice({
       //increase the wordIndex whether typed word is correct or wrong and clear the input letters
       //push the inputValue to totalWords arr
       //concat the state.inputValue arr and state.charArr
-      //empty inputValue arr
+      //empty the inputValue arr
       state.totalWords.push(inputValue);
       state.charArr = [...state.charArr, ...state.inputValue];
       state.wordIndex++;
@@ -94,6 +94,7 @@ const wordsSentence = createSlice({
   }
 });
 
+//get sentence from server
 export const getText = function (action) {
   return async (dispatch) => {
     try {
